@@ -1,4 +1,6 @@
-# [React Qrbtf](https://github.com/CPunisher/react-qrbtf)
+# qr-beautiful
+
+[Based on the amazing work by CPunisher](https://github.com/CPunisher/react-qrbtf)
 
 [![Npm Version][npm-version-image]][npm-version-url]
 [![License][license-image]][license-url]
@@ -16,23 +18,26 @@
 ### Installation & Usage
 
 ```sh
-npm install react-qrbtf --save
+npm install react-qrbtf
 ```
 
 ### Docs
 
 [Read docs here](http://cpunisher.github.io/react-qrbtf/) (not yet completed)
 
-### Include the Componet
+### Basic use
 
 ```js
 import React from "react"
-import { QRNormal } from "react-qrbtf"
+import { QR25D, encodeData } from "react-qrbtf"
 
-class Component extends React.Component {
-	render() {
-		return <QRNormal value="https://qrbtf.com" />
-	}
+export default function QRTest() {
+	const qrcode = encodeData({ text: "react-qrbtf" })
+	return (
+		<div className="test">
+			<QR25D qrcode={qrcode} />
+		</div>
+	)
 }
 ```
 
