@@ -2,6 +2,7 @@ import React from 'react';
 import { defaultViewBox } from '../utils/helper';
 import { getTypeTable, QRPointType } from '../utils/qrcodeHandler';
 import { RendererWrapper, RendererProps, SFC, drawIcon } from './RendererWrapper';
+import { func } from 'prop-types';
 
 enum Type {
     Rect = 'rect',
@@ -52,6 +53,13 @@ function listPoints({ qrcode, funcType, type, posType, otherColor1, otherColor2,
 
     const vw = [3, -3];
     const vh = [3, -3];
+
+    funcType = funcType! || FuncType.FuncA;
+    type = type! || Type.Rect;
+    posType = posType! || PosType.Rect;
+    otherColor1 = otherColor1! || "#000000";
+    otherColor2 = otherColor2! || "#000000";
+    posColor = posColor! || "#000000";
 
     const sq25 = "M32.048565,-1.29480038e-15 L67.951435,1.29480038e-15 C79.0954192,-7.52316311e-16 83.1364972,1.16032014 87.2105713,3.3391588 C91.2846454,5.51799746 94.4820025,8.71535463 96.6608412,12.7894287 C98.8396799,16.8635028 100,20.9045808 100,32.048565 L100,67.951435 C100,79.0954192 98.8396799,83.1364972 96.6608412,87.2105713 C94.4820025,91.2846454 91.2846454,94.4820025 87.2105713,96.6608412 C83.1364972,98.8396799 79.0954192,100 67.951435,100 L32.048565,100 C20.9045808,100 16.8635028,98.8396799 12.7894287,96.6608412 C8.71535463,94.4820025 5.51799746,91.2846454 3.3391588,87.2105713 C1.16032014,83.1364972 5.01544207e-16,79.0954192 -8.63200256e-16,67.951435 L8.63200256e-16,32.048565 C-5.01544207e-16,20.9045808 1.16032014,16.8635028 3.3391588,12.7894287 C5.51799746,8.71535463 8.71535463,5.51799746 12.7894287,3.3391588 C16.8635028,1.16032014 20.9045808,7.52316311e-16 32.048565,-1.29480038e-15 Z";
 
@@ -145,13 +153,13 @@ QRFunc.defaultCSS = {
     }
 }
 
-QRFunc.defaultProps = {
-    funcType: FuncType.FuncA,
-    type: Type.Rect,
-    posType: PosType.Rect,
-    otherColor1: '#000000',
-    otherColor2: '#000000',
-    posColor: '#000000',
-}
+// QRFunc.defaultProps = {
+//     funcType: FuncType.FuncA,
+//     type: Type.Rect,
+//     posType: PosType.Rect,
+//     otherColor1: '#000000',
+//     otherColor2: '#000000',
+//     posColor: '#000000',
+// }
 
 export default RendererWrapper(QRFunc);

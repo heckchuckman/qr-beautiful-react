@@ -54,6 +54,22 @@ function listPoints({ qrcode, direction, lineWidth, lineOpacity, lineColor, posT
     let id = 0;
     let otherColor = lineColor;
 
+    direction = direction! || LineDirection.LeftToRight;
+    lineWidth = lineWidth! / 100 || 0.5;
+    lineOpacity = lineOpacity! / 100 || 1.0;
+    lineColor = lineColor! || "#000000";
+    posType = posType! || PosType.Rect;
+    posColor = posColor! || "#000000";
+
+    // QRLine.defaultProps = {
+//     direction: LineDirection.LeftToRight,
+//     lineWidth: 50,
+//     lineOpacity: 100,
+//     lineColor: '#000000',
+//     posType: PosType.Rect,
+//     posColor: '#000000',
+// }
+
     const vw = [3, -3];
     const vh = [3, -3];
 
@@ -340,13 +356,13 @@ QRLine.defaultCSS = {
     }
 }
 
-QRLine.defaultProps = {
-    direction: LineDirection.LeftToRight,
-    lineWidth: 50,
-    lineOpacity: 100,
-    lineColor: '#000000',
-    posType: PosType.Rect,
-    posColor: '#000000',
-}
+// QRLine.defaultProps = {
+//     direction: LineDirection.LeftToRight,
+//     lineWidth: 50,
+//     lineOpacity: 100,
+//     lineColor: '#000000',
+//     posType: PosType.Rect,
+//     posColor: '#000000',
+// }
 
 export default RendererWrapper(QRLine);

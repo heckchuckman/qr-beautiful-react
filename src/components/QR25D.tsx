@@ -37,11 +37,12 @@ function listPoints({ qrcode, height, posHeight, topColor, leftColor, rightColor
 
     let size = 1.001;
     let size2 = 1.001;
-    height = height!;
-    posHeight = posHeight!;
-    topColor = topColor!;
-    leftColor = leftColor!;
-    rightColor = rightColor!;
+    height = height || 0.5;
+    posHeight = posHeight || 0.5;
+    topColor = topColor || "#FF7F89";
+    leftColor = leftColor || "#FFD7D9";
+    rightColor = rightColor || "#FFEBF3";
+    // Inserted default values for the props
 
     let id = 0;
 
@@ -78,12 +79,12 @@ QR25D.defaultCSS = {
     }
 }
 
-QR25D.defaultProps = {
-    height: 0.5,
-    posHeight: 0.5,
-    topColor: "#FF7F89",
-    leftColor: "#FFD7D9",
-    rightColor: "#FFEBF3",
-}
+// QR25D.defaultProps = {
+//     height: 0.5,
+//     posHeight: 0.5,
+//     topColor: "#FF7F89",
+//     leftColor: "#FFD7D9",
+//     rightColor: "#FFEBF3",
+// }
 
 export default RendererWrapper(QR25D)

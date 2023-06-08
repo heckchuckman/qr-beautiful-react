@@ -52,7 +52,7 @@ function getGrayPointList({ image, contrast, exposure }: QRResImageProps, size: 
     canvas.style.imageRendering = 'pixelated';
     size *= 3;
 
-    img.src = image!;
+    img.src = image! ;
     /**
      * 使用 crossOrigin 属性可以让 canvas 支持绘制非当前域名下的图片，比如 CDN 上的图片资源
      * ios 10.2 版本对本地图片资源不允许使用 crossOrigin 属性，因此需要使用以下兼容代码
@@ -96,9 +96,19 @@ function listPoints({ qrcode, alignType, timingType, posColor }: QRResImageProps
     const nCount = qrcode.getModuleCount();
     const typeTable = getTypeTable(qrcode);
     const pointList = new Array(nCount);
-    alignType = alignType!;
-    timingType = timingType!;
-    posColor = posColor!;
+    alignType = alignType! || Type.None;
+    timingType = timingType! || Type.None;
+    posColor = posColor! || "#000000";
+
+    // QRResImage.defaultProps = {
+    //     image: "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",
+    //     contrast: 0,
+    //     exposure: 0,
+    //     alignType: Type.None,
+    //     timingType: Type.None,
+    //     otherColor: "#000000",
+    //     posColor: "#000000"
+    // }
 
     let id = 0;
     for (let x = 0; x < nCount; x++) {
@@ -158,14 +168,14 @@ QRResImage.defaultCSS = {
     }
 }
 
-QRResImage.defaultProps = {
-    image: "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",
-    contrast: 0,
-    exposure: 0,
-    alignType: Type.None,
-    timingType: Type.None,
-    otherColor: "#000000",
-    posColor: "#000000"
-}
+// QRResImage.defaultProps = {
+//     image: "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",
+//     contrast: 0,
+//     exposure: 0,
+//     alignType: Type.None,
+//     timingType: Type.None,
+//     otherColor: "#000000",
+//     posColor: "#000000"
+// }
 
 export default RendererWrapper(QRResImage);

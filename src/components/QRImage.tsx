@@ -43,14 +43,26 @@ function listPoints({ qrcode, image, type, size, opacity, darkColor, lightColor,
     const typeTable = getTypeTable(qrcode);
     const pointList = new Array(nCount);
 
-    image = image!;
-    type = type!;
-    size = size! / 100 / 3;
-    opacity = opacity! / 100;
-    darkColor = darkColor!;
-    lightColor = lightColor!;
-    posType = posType!;
+    image = image! || "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
+    type = type! || Type.Rect;
+    size = size! / 100 / 3 || 0.3;
+    opacity = opacity! / 100 || 1.0;
+    darkColor = darkColor! || "#000000";
+    lightColor = lightColor! || "#FFFFFF";
+    posType = posType! || PosType.Rect;
+    posColor = posColor! || "#000000";
     let id = 0;
+
+    // QRImage.defaultProps = {
+        //     image: "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",
+        //     type: Type.Rect,
+        //     size: 100,
+        //     opacity: 100,
+        //     darkColor: "#000000",
+        //     lightColor: "#FFFFFF",
+        //     posType: PosType.Rect,
+        //     posColor: "#000000",
+        // }
 
     const vw = [3, -3];
     const vh = [3, -3];
@@ -134,15 +146,15 @@ QRImage.defaultCSS = {
     }
 }
 
-QRImage.defaultProps = {
-    image: "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",
-    type: Type.Rect,
-    size: 100,
-    opacity: 100,
-    darkColor: "#000000",
-    lightColor: "#FFFFFF",
-    posType: PosType.Rect,
-    posColor: "#000000",
-}
+// QRImage.defaultProps = {
+//     image: "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",
+//     type: Type.Rect,
+//     size: 100,
+//     opacity: 100,
+//     darkColor: "#000000",
+//     lightColor: "#FFFFFF",
+//     posType: PosType.Rect,
+//     posColor: "#000000",
+// }
 
 export default RendererWrapper(QRImage);

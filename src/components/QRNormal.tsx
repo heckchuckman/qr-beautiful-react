@@ -44,8 +44,12 @@ function listPoints({ qrcode, type, size, opacity, posType, otherColor, posColor
     const typeTable = getTypeTable(qrcode);
     const pointList = new Array(nCount);
 
-    size = size! / 100;
-    opacity = opacity! / 100;
+    type = type! || Type.Rect;
+    size = size! / 100 || 1;
+    opacity = opacity! / 100 || 1;
+    posType = posType! || PosType.Rect;
+    otherColor = otherColor! || "#000000";
+    posColor = posColor! || "#000000";
     let id = 0;
 
     const vw = [3, -3];
@@ -107,14 +111,14 @@ QRNormal.defaultCSS = {
     }
 }
 
-QRNormal.defaultProps = {
-    styles: {},
-    type: Type.Rect,
-    size: 100,
-    opacity: 100,
-    posType: PosType.Rect,
-    otherColor: '#000000',
-    posColor: '#000000',
-}
+// QRNormal.defaultProps = {
+//     styles: {},
+//     type: Type.Rect,
+//     size: 100,
+//     opacity: 100,
+//     posType: PosType.Rect,
+//     otherColor: '#000000',
+//     posColor: '#000000',
+// }
 
 export default RendererWrapper(QRNormal);

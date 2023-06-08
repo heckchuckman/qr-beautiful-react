@@ -37,11 +37,18 @@ function listPoints({ qrcode, scale, crossWidth, posWidth, posType }: QRDsjProps
     const g2 = [];
 
 
-    scale = scale! / 100;
-    crossWidth = crossWidth! / 100;
-    posWidth = posWidth! / 100;
-    posType = posType!;
+    scale = scale! / 100 || 0.7;
+    crossWidth = crossWidth! / 100 || 0.7;
+    posWidth = posWidth! / 100 || 0.9;
+    posType = posType! || Type.Dsj;
     let id = 0;
+
+    // QRDsj.defaultProps = {
+    //     scale: 70,
+    //     crossWidth: 70,
+    //     posWidth: 90,
+    //     posType: Type.Dsj,
+    // }
 
     let available: Array<Array<boolean>> = [];
     let available2: Array<Array<boolean>> = [];
@@ -186,11 +193,11 @@ QRDsj.defaultCSS = {
     }
 }
 
-QRDsj.defaultProps = {
-    scale: 70,
-    crossWidth: 70,
-    posWidth: 90,
-    posType: Type.Dsj,
-}
+// QRDsj.defaultProps = {
+//     scale: 70,
+//     crossWidth: 70,
+//     posWidth: 90,
+//     posType: Type.Dsj,
+// }
 
 export default RendererWrapper(QRDsj);

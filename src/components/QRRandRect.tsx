@@ -57,7 +57,4 @@ QRRandRect.defaultCSS = {
     }
 }
 
-QRRandRect.defaultProps = {
-}
-
 export default RendererWrapper(QRRandRect);

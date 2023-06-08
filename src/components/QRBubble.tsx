@@ -29,8 +29,13 @@ function listPoints({ qrcode, circleColor, posColor }: QRBubbleProps) {
 
     let id = 0;
 
-    circleColor = circleColor!;
-    posColor = posColor!;
+    circleColor = circleColor || '#8ED1FC';
+    posColor = posColor || '#0693E3';
+
+    // QRBubble.defaultProps = {
+    //     circleColor: '#8ED1FC',
+    //     posColor: '#0693E3'
+    // }
 
     let available: Array<Array<boolean>> = [];
     let ava2: Array<Array<boolean>> = [];
@@ -134,9 +139,9 @@ QRBubble.defaultCSS = {
     }
 }
 
-QRBubble.defaultProps = {
-    circleColor: '#8ED1FC',
-    posColor: '#0693E3'
-}
+// QRBubble.defaultProps = {
+//     circleColor: '#8ED1FC',
+//     posColor: '#0693E3'
+// }
 
 export default RendererWrapper(QRBubble)
