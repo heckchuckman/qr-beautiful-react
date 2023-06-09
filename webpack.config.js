@@ -14,7 +14,6 @@ module.exports = {
 	resolve: {
 		extensions: [".ts", ".tsx", ".js"],
 	},
-	// plugins: [new CleanWebpackPlugin()],
 	optimization: {
 		minimizer: [
 			new TerserPlugin({

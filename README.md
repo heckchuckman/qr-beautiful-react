@@ -1,6 +1,7 @@
-# qr-beautiful
+# qr-beautiful-react
 
 [Based on the amazing work by CPunisher](https://github.com/CPunisher/react-qrbtf)
+(this library is a fork of the original, with optimizations, updated pattersn, and new features)
 
 [![Npm Version][npm-version-image]][npm-version-url]
 [![License][license-image]][license-url]
@@ -18,7 +19,7 @@
 ### Installation & Usage
 
 ```sh
-npm install react-qrbtf
+npm install qr-beautiful-react
 ```
 
 ### Docs
@@ -29,10 +30,10 @@ npm install react-qrbtf
 
 ```js
 import React from "react"
-import { QR25D, encodeData } from "react-qrbtf"
+import { QR25D, encodeData } from "qr-beautiful-react"
 
 export default function QRTest() {
-	const qrcode = encodeData({ text: "react-qrbtf" })
+	const qrcode = encodeData({ text: "This is a test!" })
 	return (
 		<div className="test">
 			<QR25D qrcode={qrcode} />
@@ -40,8 +41,3 @@ export default function QRTest() {
 	)
 }
 ```
-
-[npm-version-image]: https://img.shields.io/npm/v/react-qrbtf
-[npm-version-url]: https://www.npmjs.com/package/react-qrbtf
-[license-image]: http://img.shields.io/npm/l/react-qrbtf.svg
-[license-url]: LICENSE
