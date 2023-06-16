@@ -13,6 +13,9 @@ interface QRDsjProps extends RendererProps {
     crossWidth?: number,
     posWidth?: number,
     posType?: Type | string,
+    pointColor?: string,
+    primaryColor?: string,
+    secondaryColor?: string,
 }
 
 const QRDsj: SFC<QRDsjProps> = (props) => {
@@ -27,7 +30,7 @@ const QRDsj: SFC<QRDsjProps> = (props) => {
 }
 
 
-function listPoints({ qrcode, scale, crossWidth, posWidth, posType }: QRDsjProps) {
+function listPoints({ qrcode, scale, crossWidth, posWidth, posType, pointColor, primaryColor, secondaryColor}: QRDsjProps) {
     if (!qrcode) return []
 
     const nCount = qrcode.getModuleCount();
@@ -41,6 +44,9 @@ function listPoints({ qrcode, scale, crossWidth, posWidth, posType }: QRDsjProps
     crossWidth = crossWidth! / 100 || 0.7;
     posWidth = posWidth! / 100 || 0.9;
     posType = posType! || Type.Dsj;
+    pointColor = pointColor! || "#0B2D97";
+    primaryColor = primaryColor! || "#E02020";
+    secondaryColor = secondaryColor! || "#F6B506";
     let id = 0;
 
     // QRDsj.defaultProps = {
@@ -67,18 +73,18 @@ function listPoints({ qrcode, scale, crossWidth, posWidth, posType }: QRDsjProps
 
             else if (typeTable[x][y] === QRPointType.POS_CENTER) {
                 if (posType === Type.Rect) {
-                    pointList.push(<rect width={1} height={1} key={id++} fill="#0B2D97" x={x} y={y} />);
+                    pointList.push(<rect width={1} height={1} key={id++} fill={pointColor} x={x} y={y} />);
                 } else if (posType === Type.Dsj) {
-                    pointList.push(<rect width={3 - (1 - posWidth)} height={3 - (1 - posWidth)} key={id++} fill="#0B2D97" x={x - 1 + (1 - posWidth) / 2} y={y - 1 + (1 - posWidth) / 2} />);
-                    pointList.push(<rect width={posWidth} height={3 - (1 - posWidth)} key={id++} fill="#0B2D97" x={x - 3 + (1 - posWidth) / 2} y={y - 1 + (1 - posWidth) / 2} />);
-                    pointList.push(<rect width={posWidth} height={3 - (1 - posWidth)} key={id++} fill="#0B2D97" x={x + 3 + (1 - posWidth) / 2} y={y - 1 + (1 - posWidth) / 2} />);
-                    pointList.push(<rect width={3 - (1 - posWidth)} height={posWidth} key={id++} fill="#0B2D97" x={x - 1 + (1 - posWidth) / 2} y={y - 3 + (1 - posWidth) / 2} />);
-                    pointList.push(<rect width={3 - (1 - posWidth)} height={posWidth} key={id++} fill="#0B2D97" x={x - 1 + (1 - posWidth) / 2} y={y + 3 + (1 - posWidth) / 2} />);
+                    pointList.push(<rect width={3 - (1 - posWidth)} height={3 - (1 - posWidth)} key={id++} fill={pointColor} x={x - 1 + (1 - posWidth) / 2} y={y - 1 + (1 - posWidth) / 2} />);
+                    pointList.push(<rect width={posWidth} height={3 - (1 - posWidth)} key={id++} fill={pointColor} x={x - 3 + (1 - posWidth) / 2} y={y - 1 + (1 - posWidth) / 2} />);
+                    pointList.push(<rect width={posWidth} height={3 - (1 - posWidth)} key={id++} fill={pointColor} x={x + 3 + (1 - posWidth) / 2} y={y - 1 + (1 - posWidth) / 2} />);
+                    pointList.push(<rect width={3 - (1 - posWidth)} height={posWidth} key={id++} fill={pointColor} x={x - 1 + (1 - posWidth) / 2} y={y - 3 + (1 - posWidth) / 2} />);
+                    pointList.push(<rect width={3 - (1 - posWidth)} height={posWidth} key={id++} fill={pointColor} x={x - 1 + (1 - posWidth) / 2} y={y + 3 + (1 - posWidth) / 2} />);
                 }
             }
             else if (typeTable[x][y] === QRPointType.POS_OTHER) {
                 if (posType === Type.Rect) {
-                    pointList.push(<rect width={1} height={1} key={id++} fill="#0B2D97" x={x} y={y} />);
+                    pointList.push(<rect width={1} height={1} key={id++} fill={pointColor} x={x} y={y} />);
                 }
             }
             else {
@@ -92,8 +98,8 @@ function listPoints({ qrcode, scale, crossWidth, posWidth, posType }: QRDsjProps
                         }
                     }
                     if (ctn && qrcode.isDark(x + 2, y) && qrcode.isDark(x + 1, y + 1) && qrcode.isDark(x, y + 2) && qrcode.isDark(x + 2, y + 2)) {
-                        g1.push(<line key={id++} x1={x + crossWidth / Math.sqrt(8)} y1={y + crossWidth / Math.sqrt(8)} x2={x + 3 - crossWidth / Math.sqrt(8)} y2={y + 3 - crossWidth / Math.sqrt(8)} fill="none" stroke="#0B2D97" strokeWidth={crossWidth} />)
-                        g1.push(<line key={id++} x1={x + 3 - crossWidth / Math.sqrt(8)} y1={y + crossWidth / Math.sqrt(8)} x2={x + crossWidth / Math.sqrt(8)} y2={y + 3 - crossWidth / Math.sqrt(8)} fill="none" stroke="#0B2D97" strokeWidth={crossWidth} />)
+                        g1.push(<line key={id++} x1={x + crossWidth / Math.sqrt(8)} y1={y + crossWidth / Math.sqrt(8)} x2={x + 3 - crossWidth / Math.sqrt(8)} y2={y + 3 - crossWidth / Math.sqrt(8)} fill="none" stroke={pointColor} strokeWidth={crossWidth} />)
+                        g1.push(<line key={id++} x1={x + 3 - crossWidth / Math.sqrt(8)} y1={y + crossWidth / Math.sqrt(8)} x2={x + crossWidth / Math.sqrt(8)} y2={y + 3 - crossWidth / Math.sqrt(8)} fill="none" stroke={pointColor} strokeWidth={crossWidth} />)
                         available[x][y] = false;
                         available[x + 2][y] = false;
                         available[x][y + 2] = false;
@@ -116,8 +122,8 @@ function listPoints({ qrcode, scale, crossWidth, posWidth, posType }: QRDsjProps
                         }
                     }
                     if (ctn && qrcode.isDark(x + 1, y) && qrcode.isDark(x, y + 1) && qrcode.isDark(x + 1, y + 1)) {
-                        g1.push(<line key={id++} x1={x + crossWidth / Math.sqrt(8)} y1={y + crossWidth / Math.sqrt(8)} x2={x + 2 - crossWidth / Math.sqrt(8)} y2={y + 2 - crossWidth / Math.sqrt(8)} fill="none" stroke="#0B2D97" strokeWidth={crossWidth} />)
-                        g1.push(<line key={id++} x1={x + 2 - crossWidth / Math.sqrt(8)} y1={y + crossWidth / Math.sqrt(8)} x2={x + crossWidth / Math.sqrt(8)} y2={y + 2 - crossWidth / Math.sqrt(8)} fill="none" stroke="#0B2D97" strokeWidth={crossWidth} />)
+                        g1.push(<line key={id++} x1={x + crossWidth / Math.sqrt(8)} y1={y + crossWidth / Math.sqrt(8)} x2={x + 2 - crossWidth / Math.sqrt(8)} y2={y + 2 - crossWidth / Math.sqrt(8)} fill="none" stroke={pointColor} strokeWidth={crossWidth} />)
+                        g1.push(<line key={id++} x1={x + 2 - crossWidth / Math.sqrt(8)} y1={y + crossWidth / Math.sqrt(8)} x2={x + crossWidth / Math.sqrt(8)} y2={y + 2 - crossWidth / Math.sqrt(8)} fill="none" stroke={pointColor} strokeWidth={crossWidth} />)
                         for (let i = 0; i < 2; i++) {
                             for (let j = 0; j < 2; j++) {
                                 available[x + i][y + j] = false;
@@ -143,8 +149,8 @@ function listPoints({ qrcode, scale, crossWidth, posWidth, posType }: QRDsjProps
                                 available2[x][i] = false;
                                 available[x][i] = false;
                             }
-                            g2.push(<rect width={scale} height={end - start - 1 - (1 - scale)} key={id++} fill="#E02020" x={x + (1 - scale) / 2} y={y + (1 - scale) / 2} />)
-                            g2.push(<rect width={scale} height={scale} key={id++} fill="#E02020" x={x + (1 - scale) / 2} y={end - 1 + (1 - scale) / 2} />)
+                            g2.push(<rect width={scale} height={end - start - 1 - (1 - scale)} key={id++} fill={primaryColor} x={x + (1 - scale) / 2} y={y + (1 - scale) / 2} />)
+                            g2.push(<rect width={scale} height={scale} key={id++} fill={primaryColor} x={x + (1 - scale) / 2} y={end - 1 + (1 - scale) / 2} />)
                         }
                     }
                 }
@@ -165,12 +171,12 @@ function listPoints({ qrcode, scale, crossWidth, posWidth, posType }: QRDsjProps
                                 available2[i][y] = false;
                                 available[i][y] = false;
                             }
-                            g2.push(<rect width={end - start - (1 - scale)} height={scale} key={id++} fill="#F6B506" x={x + (1 - scale) / 2} y={y + (1 - scale) / 2} />)
+                            g2.push(<rect width={end - start - (1 - scale)} height={scale} key={id++} fill={secondaryColor} x={x + (1 - scale) / 2} y={y + (1 - scale) / 2} />)
                         }
                     }
                 }
                 if (available[x][y]) {
-                    pointList.push(<rect width={scale} height={scale} key={id++} fill="#F6B506" x={x + (1 - scale) / 2} y={y + (1 - scale) / 2} />)
+                    pointList.push(<rect width={scale} height={scale} key={id++} fill={secondaryColor} x={x + (1 - scale) / 2} y={y + (1 - scale) / 2} />)
                 }
 
 
@@ -192,12 +198,5 @@ QRDsj.defaultCSS = {
     svg: {
     }
 }
-
-// QRDsj.defaultProps = {
-//     scale: 70,
-//     crossWidth: 70,
-//     posWidth: 90,
-//     posType: Type.Dsj,
-// }
 
 export default RendererWrapper(QRDsj);

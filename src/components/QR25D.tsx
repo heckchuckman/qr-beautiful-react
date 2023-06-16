@@ -39,9 +39,9 @@ function listPoints({ qrcode, height, posHeight, topColor, leftColor, rightColor
     let size2 = 1.001;
     height = height || 0.5;
     posHeight = posHeight || 0.5;
-    topColor = topColor || "#FF7F89";
-    leftColor = leftColor || "#FFD7D9";
-    rightColor = rightColor || "#FFEBF3";
+    topColor = topColor || "#000000";
+    leftColor = leftColor || "#7a7a7a";
+    rightColor = rightColor || "#cecece";
     // Inserted default values for the props
 
     let id = 0;

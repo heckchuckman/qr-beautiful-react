@@ -2,7 +2,6 @@ import React from 'react';
 import { defaultViewBox } from '../utils/helper';
 import { getTypeTable, QRPointType } from '../utils/qrcodeHandler';
 import { RendererWrapper, RendererProps, SFC, drawIcon } from './RendererWrapper';
-import { func } from 'prop-types';
 
 enum Type {
     Rect = 'rect',
@@ -152,14 +151,5 @@ QRFunc.defaultCSS = {
     svg: {
     }
 }
-
-// QRFunc.defaultProps = {
-//     funcType: FuncType.FuncA,
-//     type: Type.Rect,
-//     posType: PosType.Rect,
-//     otherColor1: '#000000',
-//     otherColor2: '#000000',
-//     posColor: '#000000',
-// }
 
 export default RendererWrapper(QRFunc);
