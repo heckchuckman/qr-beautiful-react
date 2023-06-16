@@ -10,6 +10,7 @@ module.exports = {
 		library: "react-qrbtf",
 		umdNamedDefine: true,
 		clean: true,
+		globalObject: "this",
 	},
 	resolve: {
 		extensions: [".ts", ".tsx", ".js"],
